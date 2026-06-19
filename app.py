@@ -32,15 +32,12 @@ if st.button("🚀 Organize Files"):
     if folder == "":
         st.warning("Please enter a folder path.")
 
-    else:
-        moved = []
+    elif not os.path.exists(folder):
+        st.error("❌ Folder not found!")
 
-        if folder:
-            if os.path.exists(folder):
-                files = os.listdir(folder)
-                st.write(files)
-            else:
-                st.error("Folder not found!")
+    else:
+        files = os.listdir(folder)
+        moved = []
 
         progress = st.progress(0)
 
@@ -75,13 +72,13 @@ if st.button("🚀 Organize Files"):
         st.metric("Files Moved", len(moved))
 
         if moved:
-
             df = pd.DataFrame(moved, columns=["File Name", "Category"])
 
             st.subheader("Moved Files")
-
             st.dataframe(df, use_container_width=True)
 
             st.subheader("Files by Category")
-
             st.bar_chart(df["Category"].value_counts())
+
+        else:
+            st.info("No files were moved.")
