@@ -35,7 +35,12 @@ if st.button("🚀 Organize Files"):
     else:
         moved = []
 
-        files = os.listdir(folder)
+        if folder:
+            if os.path.exists(folder):
+                files = os.listdir(folder)
+                st.write(files)
+            else:
+                st.error("Folder not found!")
 
         progress = st.progress(0)
 
