@@ -7,6 +7,21 @@ A simple File Organizer built using **Python** and **Streamlit**. It automatical
 ## 🚀 Live Demo
 
 👉 **Live App:** https://file-organiser-1234.streamlit.app/
+live demo cant be work
+
+---
+
+## ⚠️ Important Note
+
+This project is designed to organize files stored on your **local computer**.
+
+Because **Streamlit Community Cloud runs on a remote server**, it cannot access folders on your PC (such as `C:\Users\YourName\Downloads`). Therefore, this application **cannot be fully deployed and used on Streamlit Cloud** in its current form.
+
+To use this project, clone or download the repository and run it locally:
+
+```bash
+python -m streamlit run app.py
+
 
 ---
 
