@@ -1,8 +1,8 @@
 import os
 import shutil
-j=input("enter path of folder")
+file=input("enter path of folder")
 #C:\Users\ragha\Documents\startGIT
-s={ "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".svg"],
+dic={ "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".svg"],
     "Videos": [".mp4", ".mkv", ".avi", ".mov", ".wmv"],
     "Audio": [".mp3", ".wav", ".aac", ".flac"],
     "Documents": [".pdf", ".doc", ".docx", ".txt", ".rtf"],
@@ -15,20 +15,28 @@ s={ "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".svg"],
     "Archives": [".zip", ".rar", ".7z", ".tar", ".gz"],
     "Executables": [".exe", ".msi", ".bat"],
     "Database": [".db", ".sqlite", ".sql"],
-    "md":[".md"],
-    "other_folder":["",' ',".","."]}
+    "md":[".md"]}
 
-f=os.listdir(fr'{j}')
-for i in f:
-    ext = os.path.splitext(i)[1].lower()
-    for x in s:
-        if ext in s[x]:
-            if not os.path.exists(fr'{j}\{x}'):
-                os.mkdir(fr'{j}\{x}') 
-            shutil.move(fr'{j}\{i}',fr'{j}\{x}\{i}')
-        else:
-            continue
+fol=os.listdir(fr'{file}')
+for each in fol:
+    if os.path.isdir(fr'{file}\{each}'):
+        continue
+    ext = os.path.splitext(each)[1].lower()
+    for typef in dic:
+        if ext in dic[typef]:
+            if not os.path.exists(fr'{file}\{typef}'):
+                os.mkdir(fr'{file}\{typef}') 
+            shutil.move(fr'{file}\{each}',fr'{file}\{typef}\{each}')
+            break
+        
+    else:
+        if not os.path.exists(fr'{file}\other_folder'):
+            os.mkdir(fr'{file}\other_folder')
+        shutil.move(fr'{file}\{each}', fr'{file}\other_folder\{each}')
+            
+            
 
-fl=os.listdir(fr'{j}')
+fl=os.listdir(fr'{file}')
 for i in fl:
     print(i)
+print("\nFolder organized successfully!\n")
